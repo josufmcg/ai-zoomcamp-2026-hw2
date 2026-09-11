@@ -29,6 +29,11 @@ uv run uvicorn app.main:app --reload
 The API is also available from the project root with `make backend-install`,
 `make backend-test`, and `make backend`.
 
+Start both services during development with `make backend` and `make frontend`.
+The Vite development server proxies `/api` requests to the FastAPI server. For
+another deployment, set `VITE_API_URL` to the backend base URL when building
+the frontend.
+
 The current backend uses an in-memory mock database. Restarting the API clears
 all groups, members, and expenses.
 

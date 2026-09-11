@@ -4,6 +4,7 @@ from uuid import UUID
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 from .database import MockDatabase
 from .models import (
@@ -17,6 +18,13 @@ from .models import (
 
 app = FastAPI(title="Expenses4All API", version="1.0.0")
 database = MockDatabase()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type"],
+)
 
 
 @app.exception_handler(RequestValidationError)

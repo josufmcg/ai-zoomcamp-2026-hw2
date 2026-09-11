@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, Navigate, Route, Routes, useNavigate, useParams } from 'react-router-dom'
 import { ArrowRight, CalendarDays, Check, Clipboard, Copy, CreditCard, Link2, Plus, Receipt, Sparkles, Users, X } from 'lucide-react'
-import * as api from './api/mockApi'
+import * as api from './api/backendApi'
 
 const today = new Date().toISOString().slice(0, 10)
 const money = (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value)
