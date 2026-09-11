@@ -23,9 +23,14 @@ From `backend/`:
 ```bash
 uv sync
 uv run pytest
+uv run uvicorn app.main:app --reload
 ```
 
-Start the API with the command provided by the backend framework after it is configured. Keep backend-specific dependencies and scripts in `backend/pyproject.toml`.
+The API is also available from the project root with `make backend-install`,
+`make backend-test`, and `make backend`.
+
+The current backend uses an in-memory mock database. Restarting the API clears
+all groups, members, and expenses.
 
 ## Frontend setup
 

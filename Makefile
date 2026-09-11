@@ -1,7 +1,17 @@
 FRONTEND_DIR := frontend
+BACKEND_DIR := backend
 NODE_VERSION ?= 20
 
-.PHONY: frontend-install frontend frontend-build frontend-test
+.PHONY: backend-install backend backend-test frontend-install frontend frontend-build frontend-test
+
+backend-install:
+	uv sync --directory $(BACKEND_DIR)
+
+backend:
+	uv run --directory $(BACKEND_DIR) uvicorn app.main:app --reload
+
+backend-test:
+	uv run --directory $(BACKEND_DIR) pytest
 
 define run_frontend
 	@if [ -s "$$HOME/.nvm/nvm.sh" ]; then . "$$HOME/.nvm/nvm.sh" && nvm use $(NODE_VERSION) >/dev/null; fi; \
